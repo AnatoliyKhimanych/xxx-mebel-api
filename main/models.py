@@ -3,9 +3,9 @@ from django.db import models
 #? Модель БД для хранения мебели
 class Furniture(models.Model):
   CATEGORY_CHOICES = [
-      ('table', 'Table'),
-      ('chair', 'Chair'),
-      ('sofa', 'Sofa'),
+    ('table', 'Table'),
+    ('chair', 'Chair'),
+    ('sofa', 'Sofa'),
   ]
 
   #? Поля в таблице БД
@@ -24,4 +24,4 @@ class Order(models.Model):
   created_at = models.DateTimeField(auto_now_add=True)
 
   def __str__(self):
-      return f"Заказ №{self.id}, email клиента: {self.email}"
+    return f"Заказ №{self.id}, email клиента: {self.email}"

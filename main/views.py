@@ -10,24 +10,24 @@ class FurnitureListView(generics.ListAPIView):
 
 
 class FurnitureDetailView(generics.RetrieveAPIView):
-    queryset = Furniture.objects.all()
-    serializer_class = FurnitureSerializer
+  queryset = Furniture.objects.all()
+  serializer_class = FurnitureSerializer
 
 
 class OrderCreateView(generics.CreateAPIView):
-    queryset = Order.objects.all()
-    serializer_class = OrderSerializer
+  queryset = Order.objects.all()
+  serializer_class = OrderSerializer
 
-    def perform_create(self, serializer):
-        items = serializer.validated_data['items']
-        total = sum(item.price for item in items)
-        serializer.save(total_price=total)
+  def perform_create(self, serializer):
+    items = serializer.validated_data['items']
+    total = sum(item.price for item in items)
+    serializer.save(total_price=total)
 
 
 class OrderListByEmailView(generics.ListAPIView):
-    serializer_class = OrderSerializer
+  serializer_class = OrderSerializer
 
-    def get_queryset(self):
-        email = self.request.query_params.get('email')
-        return Order.objects.filter(email=email)
+  def get_queryset(self):
+    email = self.request.query_params.get('email')
+    return Order.objects.filter(email=email)
 
